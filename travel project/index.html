@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!-- Indique que c'est un document HTML5 -->
+
+<html lang="en">
+<!-- La langue de la page est l'anglais -->
+
+<head>
+  <meta charset="UTF-8" />
+  <!-- Définit l'encodage pour afficher correctement les caractères spéciaux -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- Règle l'affichage sur mobile pour que la page soit responsive (adaptée à tous les écrans) -->
+
+  <title>World Explorer</title>
+  <!-- Titre qui s'affiche dans l’onglet du navigateur -->
+
+  <link rel="stylesheet" href="style.css" />
+  <!-- Lien vers le fichier CSS pour styliser la page -->
+</head>
+
+<body>
+  <!-- ✅ OVERLAY DE DÉMARRAGE (cachera la vidéo tant que l’utilisateur n’a pas cliqué) -->
+  <div id="startOverlay">
+    <!-- Conteneur sombre avec le bouton -->
+    <button id="startBtn">🎧 Lancer l'expérience</button>
+    <!-- Le bouton que l'utilisateur doit cliquer pour démarrer l’audio -->
+  </div>
+
+  <div class="video-container">
+    <!-- Conteneur principal pour la vidéo -->
+
+    <video id="bgVideo" autoplay muted loop>
+      <!-- Vidéo de fond avec :
+        autoplay → démarre automatiquement,
+        muted → sans son au départ (important pour que la vidéo joue automatiquement),
+        loop → recommence automatiquement à la fin -->
+      
+      <source src="videos/video1.mp4" type="video/mp4" />
+      <!-- Source de la vidéo à lire (première vidéo par défaut) -->
+    </video>
+
+    <div class="overlay">
+      <!-- Superposition sombre pour voir les textes au-dessus de la vidéo -->
+
+      <div class="card">
+        <p id="slideNumber" style="margin-top: 15px; color: #00ffcc;"></p>
+
+        <!-- Bloc contenant les textes et la barre de progression -->
+
+        <h1 id="place">Seaside Paradise</h1>
+        <!-- Titre du lieu (sera changé automatiquement par le JavaScript) -->
+
+        <h2 id="title">A Heart in the Sand</h2>
+        <!-- Sous-titre (sera aussi changé automatiquement) -->
+
+        <p id="desc">
+          Write your dreams in the sand while the ocean sings behind you.
+          A peaceful moment where sky meets sea.
+        </p>
+        <!-- Description du lieu (également modifiée automatiquement) -->
+
+        <div class="progress-bar">
+          <!-- Conteneur pour la barre de progression -->
+          <div id="bar"></div>
+          <!-- La vraie barre qui se remplit avec l’animation CSS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <audio id="bgAudio" autoplay muted loop></audio>
+  <!-- Élement audio :
+    autoplay → démarre tout seul (mais sans son au début),
+    muted → important pour que le navigateur accepte autoplay,
+    loop → recommence tout seul.
+    Le son sera changé automatiquement en JS
+  -->
+
+  <script src="script.js"></script>
+  <!-- Lien vers le JavaScript -->
+</body>
+</html>

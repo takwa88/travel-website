@@ -1,0 +1,202 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+} 
+
+/* Supprime les marges et les espacements par défaut de tous les éléments,
+   et fait que la taille inclut aussi les bordures/paddings. */
+
+body, html {
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+}
+/* Le corps et l’HTML prennent toute la hauteur de l’écran,
+   et on utilise une jolie police moderne. */
+
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+/* Conteneur de la vidéo :
+   - position relative pour placer l’overlay par-dessus,
+   - prend 100% de la largeur et toute la hauteur visible (100vh),
+   - cache ce qui déborde. */
+
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.8s ease;
+  
+}
+/* La vidéo prend tout l’espace du conteneur
+   et reste bien coupée pour couvrir sans déformation. */
+
+.overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* Superposition sombre semi-transparente (noir 40%)
+   - Position absolue pour être par-dessus la vidéo
+   - Flexbox pour centrer le contenu (le bloc texte) au milieu */
+
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  color: #fff;
+  max-width: 600px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.3);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 255, 204, 0.3);
+
+
+}
+/* Bloc contenant le texte :
+   - fond blanc très transparent
+   - coins arrondis
+   - ombre douce
+   - couleur texte blanc
+   - transition douce si quelque chose change */
+
+.card h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  text-shadow: 0 0 10px rgba(0, 255, 204, 0.7);
+
+}
+/* Titre principal du lieu, très gros */
+
+.card h2 {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  color: #ffd700;
+  text-shadow: 0 0 10px rgba(0, 255, 204, 0.7);
+
+}
+/* Sous-titre (en jaune doré) */
+
+.card p {
+  font-size: 1.1em;
+  line-height: 1.5;
+}
+/* Paragraphe (description) avec bon espacement */
+
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  margin-top: 25px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+/* Fond de la barre de progression :
+   - mince (6px)
+   - fond blanc léger transparent
+   - coins arrondis */
+
+#bar {
+  width: 0%;
+  height: 100%;
+  background: #00ffcc;
+  animation: fill 10s linear infinite;
+}
+/* La vraie barre qui se remplit (en bleu-vert),
+   animée pendant 10 secondes en boucle */
+
+@media (max-width: 768px) {
+  .card h1 { font-size: 2em; }
+  .card h2 { font-size: 1.2em; }
+  .card p { font-size: 1em; }
+}
+/* Quand l'écran est petit (ex: téléphone),
+   on réduit les tailles des textes pour meilleure lisibilité */
+
+@keyframes fill {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+/* Animation : la barre passe de 0 à 100% de sa largeur */
+/* === OVERLAY AU DÉBUT POUR DÉMARRER === */
+#startOverlay {
+  position: absolute;
+  z-index: 999; /* au-dessus de tout */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9); /* fond noir quasi opaque */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Style du bouton "Lancer l'expérience" */
+#startBtn {
+  font-size: 20px;
+  padding: 15px 30px;
+  background-color: #00ffcc; /* bleu-vert lumineux */
+  border: none;
+  border-radius: 10px;
+  color: black;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+#startBtn:hover {
+  background-color: #00ddaa; /* couleur un peu plus foncée au survol */
+}
+/* Animation douce qui fait apparaître les textes du bas vers le haut */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation appliquée à chaque texte */
+.card h1, .card h2, .card p {
+  animation: fadeInUp 1s ease forwards;
+  opacity: 0;
+}
+#startBtn {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 10px #00ffcc; }
+  to { box-shadow: 0 0 30px #00ffcc; }
+}
+#place, #title {
+  text-shadow: 0 0 10px rgba(0,255,255,0.6), 0 0 20px rgba(0,255,255,0.4);
+}
+.progress-bar {
+  height: 5px;
+  background: rgba(255,255,255,0.1);
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: inset 0 0 10px rgba(0,255,255,0.4);
+}
+#bar {
+  height: 100%;
+  background: linear-gradient(90deg, #0ff, #00f);
+  animation: fill 10s linear infinite;
+}
+
